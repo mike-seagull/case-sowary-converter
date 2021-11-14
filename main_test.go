@@ -86,3 +86,31 @@ func TestPascalCase(t *testing.T) {
 		t.Error()
 	}
 }
+func TestCamalCase(t *testing.T) {
+	correct_strings := [][]string{
+		{"a", "String"},
+		{"A", "String"},
+		{"a", "string"},
+	}
+	for _, test_string := range correct_strings {
+		s := CamalCase(test_string)
+		if s != "aString" {
+			t.Error()
+		}
+	}
+	if CamalCase([]string{""}) != "" {
+		t.Error()
+	}
+	if CamalCase([]string{" "}) != " " {
+		t.Error()
+	}
+	if CamalCase([]string{"astring"}) != "astring" {
+		t.Error()
+	}
+	if CamalCase([]string{"ASTRING"}) != "astring" {
+		t.Error()
+	}
+	if CamalCase([]string{"a-String"}) != "a-string" {
+		t.Error()
+	}
+}

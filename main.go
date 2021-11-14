@@ -29,6 +29,17 @@ func PascalCase(words []string) string {
 	}
 	return s
 }
+func CamalCase(words []string) string {
+	var s = ""
+	for i, word := range words {
+		if i == 0 {
+			s += strings.ToLower(word)
+		} else if i > 0 {
+			s += strings.Title(word)
+		}
+	}
+	return s
+}
 func main() {
 
 }
