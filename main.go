@@ -22,6 +22,13 @@ func SnakeCase(words []string) string {
 func KebabCase(words []string) string {
 	return basecase(words, "-")
 }
+func PascalCase(words []string) string {
+	var s = ""
+	for _, word := range words {
+		s += strings.Title(word)
+	}
+	return s
+}
 func main() {
 
 }
