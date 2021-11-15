@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func TestSnakeCase(t *testing.T) {
 	correct_strings := [][]string{
@@ -112,5 +115,23 @@ func TestCamalCase(t *testing.T) {
 	}
 	if CamalCase([]string{"a-String"}) != "a-string" {
 		t.Error()
+	}
+}
+func TestIdentifyCase(t *testing.T) {
+	correct_strings := []string{
+		"my_string",
+		"my-string",
+		"MyString",
+		"myString",
+	}
+	for _, test_string := range correct_strings {
+		result, err := IdentifyCase(test_string)
+		if len(result) < 2 {
+			t.Errorf("Not enough results. Length=%d. Got: %v at \"%s\"", len(result), result, test_string)
+		} else if strings.ToLower(result[0]) != "my" && strings.ToLower(result[1]) != "string" {
+			t.Errorf("Got: %v at \"%s\"", result, test_string)
+		} else if err != nil {
+			t.Error(err)
+		}
 	}
 }
