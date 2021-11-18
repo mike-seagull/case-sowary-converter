@@ -1,4 +1,4 @@
-package main
+package case_converter
 
 import (
 	"strings"

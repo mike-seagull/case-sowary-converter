@@ -1,14 +1,10 @@
-package main
+package case_converter
 
 import (
 	"errors"
-	"fmt"
-	"os"
 	"regexp"
 	"strings"
 	"unicode"
-
-	"github.com/spf13/cobra"
 )
 
 func basecase(words []string, delimiter string) string {
@@ -83,61 +79,4 @@ func IdentifyCase(input string) ([]string, error) {
 		return words, nil
 	}
 	return nil, errors.New("Unable to identify case")
-}
-func cli() {
-	tokenOutput := new([]string)
-
-	var rootCmd = &cobra.Command{
-		Use:     "csc",
-		Short:   "convert cases of a string",
-		Example: "csc camal my_string",
-		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-			var err error
-			if *tokenOutput, err = IdentifyCase(args[0]); err != nil {
-				return err
-			}
-			return nil
-		},
-	}
-	rootCmd.SetHelpCommand(&cobra.Command{Hidden: true}) // no help command
-	rootCmd.AddCommand(&cobra.Command{
-		Use:   "snake",
-		Short: "convert to `snake_case`",
-		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(SnakeCase(*tokenOutput))
-		},
-	})
-	rootCmd.AddCommand(&cobra.Command{
-		Use:   "kebab",
-		Short: "convert to `kebab-case`",
-		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(KebabCase(*tokenOutput))
-		},
-	})
-	rootCmd.AddCommand(&cobra.Command{
-		Use:   "pascal",
-		Short: "convert to `PascalCase`",
-		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(PascalCase(*tokenOutput))
-		},
-	})
-	rootCmd.AddCommand(&cobra.Command{
-		Use:   "camal",
-		Short: "convert to `camalCase`",
-		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(CamalCase(*tokenOutput))
-		},
-	})
-	rootCmd.CompletionOptions.DisableDefaultCmd = true
-	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
-	}
-}
-
-func main() {
-	cli()
 }
