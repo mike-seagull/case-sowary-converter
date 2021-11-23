@@ -1,0 +1,13 @@
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+image: ghcr.io/mike-seagull/gitpod-base:master
+tasks:
+  - name: install dependencies
+    init: test -f go.mod
+    command: go mod download
+vscode:
+  extensions:
+    - wayou.vscode-todo-highlight

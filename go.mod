@@ -2,7 +2,10 @@ module github.com/mike-seagull/csc
 
 go 1.17
 
-require internal/cli v1.0.0
+require (
+	github.com/magefile/mage v1.11.0
+	internal/cli v1.0.0
+)
 
 require pkg/case_converter v1.0.0 // indirect
 
