@@ -28,17 +28,18 @@ func KebabCase(words []string) string {
 func PascalCase(words []string) string {
 	var s = ""
 	for _, word := range words {
-		s += strings.Title(word)
+		s += strings.Title(strings.ToLower(word))
 	}
 	return s
 }
 func CamalCase(words []string) string {
 	var s = ""
 	for i, word := range words {
+		w := strings.ToLower(word)
 		if i == 0 {
-			s += strings.ToLower(word)
+			s += w
 		} else if i > 0 {
-			s += strings.Title(word)
+			s += strings.Title(w)
 		}
 	}
 	return s
