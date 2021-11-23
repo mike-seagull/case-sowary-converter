@@ -14,7 +14,9 @@ csc camal My_String_To_Convert
 myStringToConvert
 ```
 
-### Develop uses [Mage](https://magefile.org/)
+### Development uses [Mage](https://magefile.org/)
 To list target options:
 
 `go run mage.go -l` or `mage -l`
+
+### [Roadmap](https://github.com/mike-seagull/csc/projects/2)
