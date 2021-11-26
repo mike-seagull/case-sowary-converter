@@ -8,6 +8,8 @@ tasks:
   - name: install dependencies
     init: test -f go.mod
     command: go mod download
+  - name: install goreleaser
+    command: brew install goreleaser
 vscode:
   extensions:
     - wayou.vscode-todo-highlight
